@@ -37,7 +37,16 @@ public class TTGame implements Game<TTAction, TTState> {
             logger.debug("new state is:\n{}", currentState);
         }
 
-        return currentAgentIdx;
+        if (currentState.isWinner(1)) {
+            logger.info("#1 wins");
+            return 1;
+        } else if (currentState.isWinner(2)) {
+            logger.info("#2 wins");
+            return 2;
+        } else {
+            logger.info("TIE");
+            return 0;
+        }
     }
 
     private int getNext() {
