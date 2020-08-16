@@ -49,7 +49,7 @@ public class TTGame implements Game<TTAction, TTState> {
     public static void main(String[] args) {
 
         final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
-        final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>(3);
+        final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
 
         final TTGame game = new TTGame(new Agent[]{agent1, agent2});
         final int winner = game.run();

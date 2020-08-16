@@ -16,7 +16,7 @@ public class RandomAgent<A extends Action, G extends Game<A, S>, S extends GameS
     private final Random rnd;
 
     public RandomAgent() {
-        this(17);
+        rnd = new Random();
     }
 
     public RandomAgent(final int seed) {
