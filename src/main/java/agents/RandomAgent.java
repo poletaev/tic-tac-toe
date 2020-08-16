@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
-public class RandomAgent<A extends Action, G extends Game<A, S>, S extends GameState> implements Agent<A, G, S> {
+public class RandomAgent<A extends Action, G extends Game<A, S>, S extends GameState<A>> implements Agent<A, G, S> {
 
     private static final Logger logger = LoggerFactory.getLogger(RandomAgent.class);
 
@@ -24,8 +24,8 @@ public class RandomAgent<A extends Action, G extends Game<A, S>, S extends GameS
     }
 
     @Override
-    public A getAnswer(G game, S current) {
-        final A[] legalMoves = game.getLegalActions(current);
+    public A getAnswer(S current) {
+        final A[] legalMoves = current.getLegalActions();
         final int index = rnd.nextInt(legalMoves.length);
         return legalMoves[index];
     }

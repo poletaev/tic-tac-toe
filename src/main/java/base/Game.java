@@ -1,8 +1,9 @@
 package base;
 
-public interface Game <A extends Action, S extends GameState> {
+public interface Game <A extends Action, S extends GameState<A>> {
 
-    A[] getLegalActions(final S current);
+    public boolean isGameOver(final S current);
 
-    S applyAction(final S current, final A action);
+    public int run();
+
 }
