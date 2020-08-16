@@ -48,7 +48,47 @@ public class TTState implements GameState<TTAction> {
         return b.toString();
     }
 
+    public boolean isWinner(final int agentIdx) {
+        for (int x = 0; x < 3; x++) {
+            boolean isRow = true;
+            for (int y = 0; y < 3; y++) {
+                isRow &= grid[x][y] == agentIdx;
+            }
+            if (isRow)
+                return true;
+        }
+
+        for (int y = 0; y < 3; y++) {
+            boolean isColumn = true;
+            for (int x = 0; x < 3; x++) {
+                isColumn &= grid[x][y] == agentIdx;
+            }
+            if (isColumn)
+                return true;
+        }
+
+        boolean isDiag = true;
+        for (int y = 0; y < 3; y++) {
+            isDiag &= grid[y][y] == agentIdx;
+        }
+        if (isDiag)
+            return true;
+
+        isDiag = true;
+        for (int y = 0; y < 3; y++) {
+            isDiag &= grid[2 - y][y] == agentIdx;
+        }
+        if (isDiag)
+            return true;
+
+        return false;
+    }
+
+
     public boolean isGameOver() {
+        if (isWinner(1) || isWinner(2))
+            return true;
+
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 if (grid[x][y] == 0) return false;
