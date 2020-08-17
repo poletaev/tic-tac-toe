@@ -40,8 +40,14 @@ public class TTState implements GameState<TTAction> {
     public String toString() {
         final StringBuilder b = new StringBuilder();
         for (int x = 0; x < 3; x++) {
+            b.append("| ");
             for (int y = 0; y < 3; y++) {
-                b.append(grid[x][y]).append(" | ");
+                switch (grid[x][y]) {
+                    case 2 -> b.append('O');
+                    case 1 -> b.append('X');
+                    default -> b.append(' ');
+                }
+                b.append(" | ");
             }
             b.append("\n");
         }

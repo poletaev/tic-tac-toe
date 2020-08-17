@@ -10,7 +10,7 @@ public class TTGame implements Game<TTAction, TTState> {
 
     private static final Logger logger = LoggerFactory.getLogger(TTGame.class);
     private TTState currentState;
-    private int currentAgentIdx = 1;
+    private int currentAgentIdx = 2;
     private final Agent<TTAction, TTGame, TTState>[] agents;
 
     public TTGame(final Agent<TTAction, TTGame, TTState>[] agents) {
