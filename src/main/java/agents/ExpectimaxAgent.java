@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 public class ExpectimaxAgent<A extends Action, G extends Game<A, S>, S extends GameState<A>> implements Agent<A, G, S> {
 
@@ -27,11 +28,18 @@ public class ExpectimaxAgent<A extends Action, G extends Game<A, S>, S extends G
 
     private final int maxDepth;
     private final int maxAgentIdx;
+    private final Random rnd;
+    private final boolean isChooseRandom;
 
-
-    public ExpectimaxAgent(int maxDepth, int maxAgentIdx) {
+    public ExpectimaxAgent(int maxDepth, int maxAgentIdx, boolean isChooseRandom) {
         this.maxDepth = maxDepth;
         this.maxAgentIdx = maxAgentIdx;
+        this.isChooseRandom = isChooseRandom;
+        rnd = new Random();
+    }
+
+    public ExpectimaxAgent(int maxDepth, int maxAgentIdx) {
+        this(maxDepth, maxAgentIdx, false);
     }
 
     @Override
@@ -82,6 +90,7 @@ public class ExpectimaxAgent<A extends Action, G extends Game<A, S>, S extends G
         final A[] legalMoves = state.getLegalActions();
         final HashMap<Float, ArrayList<A>> value2action = new HashMap<>();
         float v = 1F;
+        //todo: not all actions are equally probable
         final float prob = (float) (1.0 / legalMoves.length);
 
         for (final A legalMove : legalMoves) {
@@ -89,11 +98,17 @@ public class ExpectimaxAgent<A extends Action, G extends Game<A, S>, S extends G
             actions.add(legalMove);
             final S newState = (S) state.applyAction(legalMove, agentIdx);
             final Result<A> result = value(newState, getNext(agentIdx), currentDepth + 1, actions);
-            value2action.put(result.value, result.actions);
+            value2action.put(result.value * prob, result.actions);
             v += result.value * prob;
         }
-        float min = Collections.min(value2action.keySet());
-        return new Result<A>(v, value2action.get(min));
+        if (isChooseRandom) {
+            final Float[] values = value2action.keySet().toArray(new Float[0]);
+            final int idx = rnd.nextInt(values.length);
+            return new Result<A>(v, value2action.get(values[idx]));
+        } else {
+            float min = Collections.min(value2action.keySet());
+            return new Result<A>(v, value2action.get(min));
+        }
     }
 
 

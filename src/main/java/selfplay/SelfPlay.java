@@ -27,13 +27,6 @@ public class SelfPlay {
 //            final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
 //            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
 
-//            ties: 32
-//            player1: 799
-//            player2: 169
-//            final MinimaxAgent<TTAction, TTGame, TTState> agent1 = new MinimaxAgent<>(10, 1);
-//            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
-
-
 //  Random vs MiniMax (depth = 10)
 //            ties: 41
 //            player1: 500
@@ -75,8 +68,16 @@ public class SelfPlay {
 //            ties: 59
 //            player1: 941
 //            player2: 0
-//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent1 = new ExpectimaxAgent<>(7, 1);
+            final ExpectimaxAgent<TTAction, TTGame, TTState> agent1 = new ExpectimaxAgent<>(7, 1);
+            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
+
+//  ExpectiMax (choose random actions, depth = 7) vs Random
+//            ties: 124
+//            player1: 616
+//            player2: 260
+//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent1 = new ExpectimaxAgent<>(7, 1, true);
 //            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
+
 
 //  Random vs ExpectiMax (depth = 7)
 //            ties: 310
@@ -89,8 +90,23 @@ public class SelfPlay {
 //            ties: 387
 //            player1: 81
 //            player2: 532
-            final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
-            final ExpectimaxAgent<TTAction, TTGame, TTState> agent2 = new ExpectimaxAgent<>(2, 2);
+//            final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
+//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent2 = new ExpectimaxAgent<>(2, 2);
+
+
+//  ExpMax (MIN) vs MinMax
+//            ties: 1000
+//            player1: 0
+//            player2: 0
+//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent1 = new ExpectimaxAgent<>(2, 1);
+//            final MinimaxAgent<TTAction, TTGame, TTState> agent2 = new MinimaxAgent<>(2, 2);
+
+//  ExpMax (EXP) vs MinMax
+//            ties: 486
+//            player1: 73
+//            player2: 441
+//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent1 = new ExpectimaxAgent<>(7, 1);
+//            final MinimaxAgent<TTAction, TTGame, TTState> agent2 = new MinimaxAgent<>(2, 2);
 
 
             final TTGame game = new TTGame(new Agent[]{agent1, agent2});
