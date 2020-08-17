@@ -1,6 +1,6 @@
 package selfplay;
 
-import agents.MinimaxAgent;
+import agents.ExpectimaxAgent;
 import agents.RandomAgent;
 import base.Agent;
 import org.slf4j.Logger;
@@ -46,8 +46,8 @@ public class SelfPlay {
 //            ties: 104
 //            player1: 865
 //            player2: 31
-            final MinimaxAgent<TTAction, TTGame, TTState> agent1 = new MinimaxAgent<>(2, 1);
-            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
+//            final MinimaxAgent<TTAction, TTGame, TTState> agent1 = new MinimaxAgent<>(2, 1);
+//            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
 
 //  Random vs MiniMax (depth = 2)
 //            ties: 366
@@ -69,6 +69,29 @@ public class SelfPlay {
 //            player2: 438
 //            final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
 //            final MinimaxAgent<TTAction, TTGame, TTState> agent2 = new MinimaxAgent<>(3, 2);
+
+
+//  ExpectiMax (depth = 7) vs Random
+//            ties: 59
+//            player1: 941
+//            player2: 0
+//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent1 = new ExpectimaxAgent<>(7, 1);
+//            final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
+
+//  Random vs ExpectiMax (depth = 7)
+//            ties: 310
+//            player1: 22
+//            player2: 668
+//            final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
+//            final ExpectimaxAgent<TTAction, TTGame, TTState> agent2 = new ExpectimaxAgent<>(7, 2);
+
+//  Random vs ExpectiMax (depth = 2)
+//            ties: 387
+//            player1: 81
+//            player2: 532
+            final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
+            final ExpectimaxAgent<TTAction, TTGame, TTState> agent2 = new ExpectimaxAgent<>(2, 2);
+
 
             final TTGame game = new TTGame(new Agent[]{agent1, agent2});
             results[game.run()]++;
