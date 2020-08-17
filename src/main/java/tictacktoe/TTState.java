@@ -54,6 +54,7 @@ public class TTState implements GameState<TTAction> {
         return b.toString();
     }
 
+    @Override
     public boolean isWinner(final int agentIdx) {
         for (int x = 0; x < 3; x++) {
             boolean isRow = true;
@@ -91,6 +92,7 @@ public class TTState implements GameState<TTAction> {
     }
 
 
+    @Override
     public boolean isGameOver() {
         if (isWinner(1) || isWinner(2))
             return true;
