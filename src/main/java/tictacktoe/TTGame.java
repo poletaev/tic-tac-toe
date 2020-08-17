@@ -1,5 +1,6 @@
 package tictacktoe;
 
+import agents.MinimaxAgent;
 import agents.RandomAgent;
 import base.Agent;
 import base.Game;
@@ -57,7 +58,7 @@ public class TTGame implements Game<TTAction, TTState> {
 
     public static void main(String[] args) {
 
-        final RandomAgent<TTAction, TTGame, TTState> agent1 = new RandomAgent<>();
+        final MinimaxAgent<TTAction, TTGame, TTState> agent1 = new MinimaxAgent<>(2, 1);
         final RandomAgent<TTAction, TTGame, TTState> agent2 = new RandomAgent<>();
 
         final TTGame game = new TTGame(new Agent[]{agent1, agent2});
